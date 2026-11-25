@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "top-nav": "/components/top-nav/top-nav",
+    "film-card": "/components/film-card/film-card",
+    "skeleton": "/components/skeleton/skeleton",
+    "toast": "/components/toast/toast"
+  },
+  "navigationStyle": "custom"
+}

@@ -1,0 +1,204 @@
+/* 食光机 - 烹饪计时器页样式 */
+@import '/app.wxss';
+
+.timer-body {
+  padding: 20px 20px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ===== 圆形进度区 + 呼吸光晕 ===== */
+.timer-ring-area {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  border-radius: 50%;
+  transition: box-shadow 0.5s;
+}
+
+.timer-ring-area.breathing {
+  box-shadow: 0 0 40px rgba(212, 165, 116, 0.15), 0 0 80px rgba(212, 165, 116, 0.06);
+  animation: breathe 3s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0%, 100% { box-shadow: 0 0 30px rgba(212, 165, 116, 0.1), 0 0 60px rgba(212, 165, 116, 0.04); }
+  50% { box-shadow: 0 0 50px rgba(212, 165, 116, 0.2), 0 0 100px rgba(212, 165, 116, 0.08); }
+}
+
+.timer-ring-area.finished {
+  box-shadow: 0 0 50px rgba(212, 165, 116, 0.3), 0 0 120px rgba(212, 165, 116, 0.12);
+}
+
+.timer-ring-canvas {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.timer-display {
+  display: flex;
+  align-items: baseline;
+  z-index: 1;
+}
+
+.timer-minutes,
+.timer-seconds {
+  font-size: 56px;
+  font-weight: 200;
+  color: #fff;
+  letter-spacing: 2px;
+  font-variant-numeric: tabular-nums;
+}
+
+.timer-colon {
+  font-size: 48px;
+  font-weight: 200;
+  color: var(--accent);
+  margin: 0 2px;
+}
+
+.timer-label {
+  position: absolute;
+  bottom: 44px;
+  font-size: 13px;
+  color: #888;
+  z-index: 1;
+}
+
+/* ===== 预设分组 ===== */
+.preset-group {
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.preset-group-title {
+  font-size: 12px;
+  color: #555;
+  margin-bottom: 8px;
+  padding-left: 4px;
+  letter-spacing: 1px;
+}
+
+.timer-presets {
+  display: flex;
+  gap: 10px;
+}
+
+.preset-btn {
+  flex: 1;
+  padding: 12px 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  text-align: center;
+  color: #999;
+  font-size: 13px;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.preset-emoji {
+  font-size: 18px;
+}
+
+.preset-btn:active {
+  background: rgba(212, 165, 116, 0.12);
+  transform: scale(0.96);
+}
+
+.preset-btn.active {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(212, 165, 116, 0.1);
+}
+
+/* ===== 自定义行 ===== */
+.custom-row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 8px;
+  margin-bottom: 4px;
+  font-size: 13px;
+  color: #888;
+  border-radius: 12px;
+}
+
+.custom-row:active {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.custom-val {
+  color: var(--accent);
+  font-size: 14px;
+}
+
+.custom-slider {
+  width: 100%;
+  padding: 0 4px 10px;
+}
+
+/* ===== 控制按钮 ===== */
+.timer-controls {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-top: 8px;
+}
+
+.ctrl-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  background: rgba(255, 255, 255, 0.06);
+  color: #aaa;
+}
+
+.ctrl-btn:active {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.ctrl-btn.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.ctrl-btn.main-btn {
+  width: 72px;
+  height: 72px;
+  font-size: 28px;
+  transition: all 0.3s;
+}
+
+.ctrl-btn.main-btn.start {
+  background: var(--accent);
+  color: #1a1a1a;
+  box-shadow: 0 4px 24px rgba(212, 165, 116, 0.45);
+}
+
+.ctrl-btn.main-btn.pause {
+  background: rgba(212, 165, 116, 0.15);
+  color: var(--accent);
+  border: 2px solid var(--accent);
+}
+
+.timer-status {
+  margin-top: 14px;
+  font-size: 13px;
+  color: #666;
+  letter-spacing: 1px;
+}

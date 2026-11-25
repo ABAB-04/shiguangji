@@ -1,0 +1,2 @@
+<!-- Toast 提示组件 -->
+<view class="toast {{show ? 'show' : ''}}">{{text}}</view>

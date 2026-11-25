@@ -1,0 +1,77 @@
+<!-- 食光机 - 美食灵感页 -->
+<view class="page-container">
+  <top-nav title="美食灵感" />
+
+  <!-- 今日精选大卡片 -->
+  <view class="featured-card" wx:if="{{featured}}" bindtap="onFeaturedTap">
+    <view class="featured-badge">今日精选</view>
+    <view class="featured-body">
+      <text class="featured-icon">{{featured.icon}}</text>
+      <view class="featured-info">
+        <view class="featured-tag type-{{featured.typeKey}}">{{featured.type}}</view>
+        <view class="featured-title">{{featured.title}}</view>
+        <view class="featured-excerpt">{{featured.content}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 操作栏 -->
+  <view class="inspo-toolbar">
+    <view class="toolbar-title">发现更多</view>
+    <view class="toolbar-actions">
+      <view class="tool-btn" bindtap="onShuffle">
+        <text>🔀 换一批</text>
+      </view>
+      <view class="tool-btn" bindtap="onRandomOne">
+        <text>🎲 随机一条</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 类型筛选 -->
+  <scroll-view scroll-x class="filter-bar">
+    <view class="filter-item {{activeFilter === '' ? 'active' : ''}}" bindtap="onFilter" data-type="">全部</view>
+    <view class="filter-item {{activeFilter === '技巧' ? 'active' : ''}}" bindtap="onFilter" data-type="技巧">🔪 技巧</view>
+    <view class="filter-item {{activeFilter === '时令' ? 'active' : ''}}" bindtap="onFilter" data-type="时令">🌸 时令</view>
+    <view class="filter-item {{activeFilter === '趣闻' ? 'active' : ''}}" bindtap="onFilter" data-type="趣闻">📜 趣闻</view>
+    <view class="filter-item {{activeFilter === '搭配' ? 'active' : ''}}" bindtap="onFilter" data-type="搭配">🍷 搭配</view>
+  </scroll-view>
+
+  <!-- 灵感卡片列表 -->
+  <view class="inspo-list">
+    <block wx:for="{{filteredItems}}" wx:key="title">
+      <view class="inspo-card type-border-{{item.typeKey}}">
+        <view class="inspo-card-left"></view>
+        <view class="inspo-card-body">
+          <view class="inspo-card-head">
+            <text class="inspo-card-icon">{{item.icon}}</text>
+            <view class="inspo-card-meta">
+              <view class="inspo-type-tag type-{{item.typeKey}}">{{item.type}}</view>
+              <text class="inspo-season">{{item.season}}</text>
+            </view>
+          </view>
+          <view class="inspo-title">{{item.title}}</view>
+          <view class="inspo-content">{{item.content}}</view>
+        </view>
+      </view>
+    </block>
+
+    <view wx:if="{{filteredItems.length === 0 && !loading}}" class="empty-state">
+      <text class="empty-icon">🍽️</text>
+      <text class="empty-text">暂无内容，下拉刷新试试</text>
+    </view>
+
+    <view wx:if="{{loading}}" class="empty-state">
+      <text class="empty-text">加载中...</text>
+      <text style="color:#555;font-size:11px;margin-top:4px;">{{debugInfo}}</text>
+    </view>
+    <view wx:if="{{!loading && filteredItems.length === 0}}" class="empty-state">
+      <text class="empty-text">暂无内容</text>
+      <text style="color:#555;font-size:11px;margin-top:4px;">调试: {{debugInfo}}</text>
+    </view>
+  </view>
+
+  <view style="height: 30px;"></view>
+</view>
+
+<toast text="{{toastText}}" show="{{toastShow}}" />

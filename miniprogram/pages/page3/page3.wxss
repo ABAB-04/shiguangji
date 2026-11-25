@@ -1,0 +1,224 @@
+/* 食光机 - 美食灵感页样式 */
+@import '/app.wxss';
+
+/* ===== 今日精选大卡片 ===== */
+.featured-card {
+  margin: 16px;
+  padding: 0;
+  background: linear-gradient(135deg, rgba(212, 165, 116, 0.12) 0%, rgba(212, 165, 116, 0.04) 100%);
+  border: 1px solid rgba(212, 165, 116, 0.2);
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+}
+
+.featured-card:active {
+  transform: scale(0.98);
+}
+
+.featured-badge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  padding: 4px 12px;
+  background: rgba(212, 165, 116, 0.2);
+  color: var(--accent);
+  font-size: 11px;
+  border-radius: 10px;
+  letter-spacing: 1px;
+}
+
+.featured-body {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 22px;
+}
+
+.featured-icon {
+  font-size: 44px;
+  flex-shrink: 0;
+}
+
+.featured-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.featured-tag {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-size: 11px;
+  margin-bottom: 8px;
+}
+
+.featured-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.featured-excerpt {
+  font-size: 13px;
+  color: #999;
+  line-height: 1.7;
+}
+
+/* ===== 工具栏 ===== */
+.inspo-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 16px 10px;
+}
+
+.toolbar-title {
+  font-size: 13px;
+  color: #888;
+  letter-spacing: 1px;
+}
+
+.toolbar-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.tool-btn {
+  padding: 6px 14px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  font-size: 12px;
+  color: #aaa;
+}
+
+.tool-btn:active {
+  background: rgba(212, 165, 116, 0.15);
+  color: var(--accent);
+}
+
+/* ===== 筛选栏 ===== */
+.filter-bar {
+  white-space: nowrap;
+  padding: 8px 16px 14px;
+}
+
+.filter-item {
+  display: inline-block;
+  padding: 7px 15px;
+  margin-right: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 18px;
+  font-size: 13px;
+  color: #888;
+  transition: all 0.2s;
+}
+
+.filter-item.active {
+  background: rgba(212, 165, 116, 0.12);
+  border-color: rgba(212, 165, 116, 0.3);
+  color: var(--accent);
+  font-weight: 500;
+}
+
+/* ===== 卡片列表 ===== */
+.inspo-list {
+  padding: 0 16px 16px;
+}
+
+.inspo-card {
+  display: flex;
+  margin-bottom: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.2s;
+}
+
+.inspo-card:active {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* 左侧类型色条 */
+.inspo-card-left {
+  width: 4px;
+  flex-shrink: 0;
+}
+
+.type-border-skill .inspo-card-left { background: #64b4ff; }
+.type-border-seasonal .inspo-card-left { background: #ffb464; }
+.type-border-trivia .inspo-card-left { background: #b482ff; }
+.type-border-pairing .inspo-card-left { background: #82c896; }
+
+.inspo-card-body {
+  flex: 1;
+  padding: 16px;
+}
+
+.inspo-card-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.inspo-card-icon {
+  font-size: 22px;
+}
+
+.inspo-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.inspo-type-tag {
+  padding: 2px 9px;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.type-skill { background: rgba(100, 180, 255, 0.18); color: #64b4ff; }
+.type-seasonal { background: rgba(255, 180, 100, 0.18); color: #ffb464; }
+.type-trivia { background: rgba(180, 130, 255, 0.18); color: #b482ff; }
+.type-pairing { background: rgba(130, 200, 150, 0.18); color: #82c896; }
+
+.inspo-season {
+  font-size: 11px;
+  color: #555;
+}
+
+.inspo-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #eee;
+  margin-bottom: 8px;
+}
+
+.inspo-content {
+  font-size: 13px;
+  color: #888;
+  line-height: 1.7;
+}
+
+/* ===== 空状态 ===== */
+.empty-state {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.empty-icon {
+  font-size: 40px;
+}
+
+.empty-text {
+  display: block;
+  color: #666;
+  font-size: 14px;
+  margin-top: 10px;
+}

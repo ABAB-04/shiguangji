@@ -1,0 +1,60 @@
+{
+  "pages": [
+    "pages/page1/page1",
+    "pages/page2/page2",
+    "pages/page3/page3",
+    "pages/page4/page4",
+    "pages/page5/page5",
+    "pages/camera/camera"
+  ],
+  "window": {
+    "navigationBarTitleText": "食光机",
+    "navigationBarBackgroundColor": "#1a1a1a",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#1a1a1a",
+    "backgroundTextStyle": "light",
+    "navigationStyle": "custom"
+  },
+  "tabBar": {
+    "color": "#666666",
+    "selectedColor": "#d4a574",
+    "backgroundColor": "#1a1a1a",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/page1/page1",
+        "text": "首页",
+        "iconPath": "images/myIcon1.png",
+        "selectedIconPath": "images/myIcon1_selected.png"
+      },
+      {
+        "pagePath": "pages/page2/page2",
+        "text": "美食图鉴",
+        "iconPath": "images/myIcon2.png",
+        "selectedIconPath": "images/myIcon2_selected.png"
+      },
+      {
+        "pagePath": "pages/page3/page3",
+        "text": "美食灵感",
+        "iconPath": "images/myIcon3.png",
+        "selectedIconPath": "images/myIcon3_selected.png"
+      },
+      {
+        "pagePath": "pages/page4/page4",
+        "text": "计时器",
+        "iconPath": "images/myIcon4.png",
+        "selectedIconPath": "images/myIcon4_selected.png"
+      },
+      {
+        "pagePath": "pages/page5/page5",
+        "text": "我的",
+        "iconPath": "images/myIcon5.png",
+        "selectedIconPath": "images/myIcon5_selected.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "cloud": true,
+  "lazyCodeLoading": "requiredComponents"
+}

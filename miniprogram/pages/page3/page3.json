@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "top-nav": "/components/top-nav/top-nav",
+    "toast": "/components/toast/toast"
+  },
+  "navigationStyle": "custom"
+}

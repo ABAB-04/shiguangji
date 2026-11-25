@@ -1,0 +1,198 @@
+<!-- 食光机 - 我的 -->
+<view class="page-container">
+  <top-nav title="个人中心" />
+
+  <!-- 头像区 -->
+  <view class="user-header">
+    <view class="user-avatar" bindtap="onChangeAvatar">
+      <image wx:if="{{userAvatarImage}}" src="{{userAvatarImage}}" mode="aspectFill" class="avatar-img" />
+      <text wx:else class="avatar-emoji">{{userAvatar}}</text>
+      <view class="avatar-badge">✎</view>
+    </view>
+    <view class="user-name" bindtap="onChangeName">
+      <text>{{userName}}</text>
+      <text class="name-edit-icon">✎</text>
+    </view>
+    <view class="user-slogan">{{userSlogan}}</view>
+  </view>
+
+  <!-- 统计卡片 -->
+  <view class="stats-row">
+    <view class="stat-card">
+      <text class="stat-num">{{statFoods}}</text>
+      <text class="stat-label">记录美食</text>
+    </view>
+    <view class="stat-card">
+      <text class="stat-num">{{statDays}}</text>
+      <text class="stat-label">记录天数</text>
+    </view>
+    <view class="stat-card">
+      <text class="stat-num">{{statMoods}}</text>
+      <text class="stat-label">心情印记</text>
+    </view>
+  </view>
+
+  <!-- 本周心情 -->
+  <view class="week-mood" wx:if="{{weekMoods.length > 0}}">
+    <view class="section-label">📊 最近心情</view>
+    <view class="mood-bar-row">
+      <block wx:for="{{weekMoods}}" wx:key="index">
+        <view class="mood-bar-item">
+          <text class="mood-bar-emoji">{{item.emoji}}</text>
+          <text class="mood-bar-date">{{item.date}}</text>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <!-- 最近记录 -->
+  <view class="recent-section" wx:if="{{recentFoods.length > 0}}">
+    <view class="section-label">📷 最近记录</view>
+    <scroll-view scroll-x class="recent-scroll" enhanced show-scrollbar="{{false}}">
+      <block wx:for="{{recentFoods}}" wx:key="_id">
+        <view class="recent-card" bindtap="onRecentTap" data-id="{{item._id}}">
+          <image wx:if="{{item.image}}" src="{{item.image}}" mode="aspectFill" class="recent-img" />
+          <view wx:else class="recent-placeholder" style="background: linear-gradient(135deg, {{item.colors[0] || '#d4a574'}}, {{item.colors[2] || '#8b7355'}});">
+            <text class="recent-placeholder-icon">🍽️</text>
+          </view>
+          <view class="recent-name">{{item.title}}</view>
+          <view class="recent-date">{{item.date}}</view>
+        </view>
+      </block>
+    </scroll-view>
+  </view>
+
+  <!-- 成就徽章 -->
+  <view class="badge-section">
+    <view class="section-label">🏆 美食成就</view>
+    <view class="badge-grid">
+      <view class="badge-item {{statFoods >= 1 ? 'earned' : ''}}">
+        <text class="badge-icon">📷</text>
+        <text class="badge-name">初次记录</text>
+      </view>
+      <view class="badge-item {{statFoods >= 10 ? 'earned' : ''}}">
+        <text class="badge-icon">🌟</text>
+        <text class="badge-name">美食家</text>
+      </view>
+      <view class="badge-item {{statFoods >= 30 ? 'earned' : ''}}">
+        <text class="badge-icon">👑</text>
+        <text class="badge-name">资深吃货</text>
+      </view>
+      <view class="badge-item {{statDays >= 7 ? 'earned' : ''}}">
+        <text class="badge-icon">🔥</text>
+        <text class="badge-name">坚持一周</text>
+      </view>
+      <view class="badge-item {{statDays >= 30 ? 'earned' : ''}}">
+        <text class="badge-icon">📅</text>
+        <text class="badge-name">月度达人</text>
+      </view>
+      <view class="badge-item {{statMoods >= 5 ? 'earned' : ''}}">
+        <text class="badge-icon">💭</text>
+        <text class="badge-name">心情记录员</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 关于 -->
+  <view class="about-section">
+    <view class="section-label">ℹ️ 关于食光机</view>
+    <view class="about-content">{{about.intro}}</view>
+    <view class="feature-tags">
+      <block wx:for="{{about.features}}" wx:key="*this">
+        <text class="feature-tag">{{item}}</text>
+      </block>
+    </view>
+  </view>
+
+  <!-- 关于开发者 -->
+  <view class="dev-entry" bindtap="onShowDeveloper">
+    <text class="dev-entry-icon">👨‍💻</text>
+    <text class="dev-entry-text">关于开发者</text>
+    <text class="dev-entry-arrow">›</text>
+  </view>
+
+  <view style="height: 30px;"></view>
+</view>
+
+<!-- 头像选择弹窗 -->
+<view class="dev-modal-mask" wx:if="{{showAvatarPicker}}" bindtap="onHideAvatarPicker"></view>
+<view class="dev-modal" wx:if="{{showAvatarPicker}}">
+  <view class="dev-modal-header">
+    <text class="dev-modal-title">选择头像</text>
+  </view>
+  <view class="avatar-grid">
+    <view
+      class="avatar-option {{!userAvatarImage && userAvatar === item ? 'selected' : ''}}"
+      wx:for="{{avatarList}}"
+      wx:key="*this"
+      data-avatar="{{item}}"
+      bindtap="onSelectAvatar"
+    >
+      <text class="avatar-option-emoji">{{item}}</text>
+    </view>
+    <!-- 上传按钮 -->
+    <view class="avatar-option avatar-upload {{userAvatarImage ? 'selected' : ''}}" bindtap="onUploadAvatar">
+      <text class="avatar-upload-icon">📷</text>
+      <text class="avatar-upload-label">相册</text>
+    </view>
+  </view>
+  <view class="dev-modal-footer">
+    <view class="dev-modal-btn" bindtap="onHideAvatarPicker">取消</view>
+  </view>
+</view>
+
+<!-- 昵称编辑弹窗 -->
+<view class="dev-modal-mask" wx:if="{{showNameModal}}" bindtap="onHideNameModal"></view>
+<view class="dev-modal" wx:if="{{showNameModal}}">
+  <view class="dev-modal-header">
+    <text class="dev-modal-title">修改昵称</text>
+  </view>
+  <view class="dev-modal-body">
+    <input
+      class="name-input"
+      value="{{nameInput}}"
+      placeholder="输入你的昵称"
+      placeholder-class="name-input-placeholder"
+      maxlength="12"
+      focus="{{true}}"
+      bindinput="onNameInput"
+      bindconfirm="onConfirmName"
+    />
+  </view>
+  <view class="dev-modal-footer" style="display:flex; gap:12rpx;">
+    <view class="dev-modal-btn" style="flex:1; background:rgba(255,255,255,0.04); color:#888;" bindtap="onHideNameModal">取消</view>
+    <view class="dev-modal-btn" style="flex:1;" bindtap="onConfirmName">确定</view>
+  </view>
+</view>
+
+<!-- 开发者介绍弹窗 -->
+<view class="dev-modal-mask" wx:if="{{showDevModal}}" bindtap="onHideDeveloper"></view>
+<view class="dev-modal" wx:if="{{showDevModal}}">
+  <view class="dev-modal-header">
+    <text class="dev-modal-icon">👨‍💻</text>
+    <text class="dev-modal-title">关于开发者</text>
+  </view>
+  <view class="dev-modal-body">
+    <view class="dev-info-row">
+      <text class="dev-info-label">开发者</text>
+      <text class="dev-info-value">{{devInfo.name}}</text>
+    </view>
+    <view class="dev-info-row">
+      <text class="dev-info-label">学校</text>
+      <text class="dev-info-value">{{devInfo.school}}</text>
+    </view>
+    <view class="dev-info-row">
+      <text class="dev-info-label">专业</text>
+      <text class="dev-info-value">{{devInfo.major}}</text>
+    </view>
+    <view class="dev-info-row">
+      <text class="dev-info-label">联系邮箱</text>
+      <text class="dev-info-value dev-email">{{devInfo.email}}</text>
+    </view>
+    <view class="dev-info-divider"></view>
+    <view class="dev-info-desc">{{devInfo.desc}}</view>
+  </view>
+  <view class="dev-modal-footer">
+    <view class="dev-modal-btn" bindtap="onHideDeveloper">知道了</view>
+  </view>
+</view>

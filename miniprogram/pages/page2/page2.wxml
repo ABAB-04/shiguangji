@@ -1,0 +1,82 @@
+<!-- 食光机 - 美食图鉴页 -->
+<view class="page-container">
+  <top-nav title="美食图鉴" showBack="{{!!selectedFood}}" bind:backtap="onBackToList" />
+
+  <!-- 瀑布流画廊模式 -->
+  <view wx:if="{{!selectedFood}}">
+    <!-- 拍照入口 -->
+    <view class="add-food-card" bindtap="onAddFood">
+      <view class="add-food-icon">📷</view>
+      <view class="add-food-text">记录一道美食</view>
+      <view class="add-food-sub">拍照 · 提取色卡 · 保存记忆</view>
+    </view>
+
+    <!-- 骨架屏 -->
+    <skeleton type="list" loading="{{isLoading}}" count="{{6}}" />
+
+    <view wx:if="{{!isLoading}}" class="section-title">全部美食</view>
+    <view wx:if="{{!isLoading}}" class="waterfall">
+      <view class="waterfall-row">
+        <view class="waterfall-col">
+          <block wx:for="{{leftFoods}}" wx:key="_id">
+            <film-card food="{{item}}" bind:tap="onFoodTap" />
+          </block>
+        </view>
+        <view class="waterfall-col">
+          <block wx:for="{{rightFoods}}" wx:key="_id">
+            <film-card food="{{item}}" bind:tap="onFoodTap" />
+          </block>
+        </view>
+      </view>
+    </view>
+
+    <!-- 加载更多提示 -->
+    <view wx:if="{{!isLoading && isLoadingMore}}" class="load-more-tip">
+      <text>正在加载更多...</text>
+    </view>
+    <view wx:if="{{!isLoading && !hasMore && allFoods.length > 0}}" class="no-more-tip">
+      <text>已加载全部 {{totalCount}} 条记录</text>
+    </view>
+    <view wx:if="{{!isLoading && allFoods.length === 0}}" class="empty-tip">
+      <text class="empty-icon">🍽️</text>
+      <text class="empty-text">还没有记录任何美食</text>
+      <text class="empty-sub">点击上方卡片记录你的第一餐</text>
+    </view>
+  </view>
+
+  <!-- 内联详情模式 -->
+  <view class="detail-container" wx:if="{{selectedFood}}">
+    <view class="detail-film">
+      <image wx:if="{{selectedFood.image}}" src="{{selectedFood.image}}" mode="widthFix" />
+      <view wx:else class="detail-placeholder" style="background: linear-gradient(135deg, {{selectedFood.colors[0] || '#d4a574'}}, {{selectedFood.colors[2] || '#8b7355'}});">
+        <text class="detail-placeholder-icon">🍽️</text>
+      </view>
+      <view class="detail-title">{{selectedFood.title}}</view>
+      <view class="detail-date">{{selectedFood.date}}</view>
+    </view>
+
+    <color-palette colors="{{selectedFood.colors}}" />
+
+    <view class="detail-desc">{{selectedFood.desc}}</view>
+
+    <view class="film-tags" style="margin-top: 20px;">
+      <block wx:for="{{selectedFood.tags}}" wx:key="*this">
+        <text class="film-tag">{{item}}</text>
+      </block>
+    </view>
+
+    <!-- 操作按钮 -->
+    <view class="detail-actions">
+      <view class="share-btn" bindtap="onGenerateShareCard">
+        <text>🖼️ 生成分享卡</text>
+      </view>
+      <view class="delete-btn" bindtap="onDeleteFood">
+        <text>🗑️ 删除此记录</text>
+      </view>
+    </view>
+  </view>
+
+  <view style="height: 20px;"></view>
+</view>
+
+<toast text="{{toastText}}" show="{{toastShow}}" />

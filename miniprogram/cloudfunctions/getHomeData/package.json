@@ -1,0 +1,9 @@
+{
+  "name": "getHomeData",
+  "version": "1.0.0",
+  "description": "食光机首页数据聚合云函数",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "latest"
+  }
+}

@@ -1,0 +1,38 @@
+<!-- 骨架屏组件 -->
+<view wx:if="{{loading}}" class="skeleton-container">
+  <!-- 日历骨架屏 -->
+  <view wx:if="{{type === 'calendar'}}" class="skeleton-calendar">
+    <!-- 月份导航占位 -->
+    <view class="skeleton-nav">
+      <view class="skeleton-arrow"></view>
+      <view class="skeleton-title"></view>
+      <view class="skeleton-arrow"></view>
+    </view>
+    <!-- 星期头占位 -->
+    <view class="skeleton-weekdays">
+      <view class="skeleton-weekday" wx:for="{{[0,1,2,3,4,5,6]}}" wx:key="*this"></view>
+    </view>
+    <!-- 日期网格占位 -->
+    <view class="skeleton-grid">
+      <view class="skeleton-cell" wx:for="{{calendarCells}}" wx:key="index"></view>
+    </view>
+  </view>
+
+  <!-- 列表骨架屏 -->
+  <view wx:if="{{type === 'list'}}" class="skeleton-list">
+    <!-- 轮播图占位 -->
+    <view class="skeleton-carousel"></view>
+    <view class="skeleton-section-title"></view>
+    <!-- 瀑布流占位 -->
+    <view class="skeleton-waterfall">
+      <view class="skeleton-col">
+        <view class="skeleton-card" wx:for="{{listCards}}" wx:key="index" 
+              style="height: {{item.height}}px;" wx:if="{{item.index % 2 === 0}}"></view>
+      </view>
+      <view class="skeleton-col">
+        <view class="skeleton-card" wx:for="{{listCards}}" wx:key="index"
+              style="height: {{item.height}}px;" wx:if="{{item.index % 2 === 1}}"></view>
+      </view>
+    </view>
+  </view>
+</view>

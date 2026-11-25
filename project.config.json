@@ -1,0 +1,23 @@
+{
+  "description": "食光机 - 复古美食日记",
+  "packOptions": {
+    "ignore": [],
+    "include": []
+  },
+  "setting": {
+    "urlCheck": true,
+    "es6": true,
+    "postcss": true,
+    "minified": true,
+    "enhance": true,
+    "minifyWXML": true,
+    "minifyWXSS": true,
+    "uploadWithSourceMap": true
+  },
+  "miniprogramRoot": "miniprogram/",
+  "cloudfunctionRoot": "miniprogram/cloudfunctions/",
+  "compileType": "miniprogram",
+  "appid": "wx25dc144f05b68faa",
+  "libVersion": "3.14.3",
+  "projectname": "食光机"
+}

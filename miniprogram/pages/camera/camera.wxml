@@ -1,0 +1,105 @@
+<!-- 食光机 - 拍照记录页 -->
+<view class="page-container no-tab">
+
+  <!-- ========== 拍照模式 ========== -->
+  <block wx:if="{{!showResult}}">
+    <view class="cam-preview">
+      <image wx:if="{{capturedImage}}" src="{{capturedImage}}" mode="aspectFit" class="cam-preview-img" />
+      <view wx:else class="cam-placeholder">
+        <text class="cam-placeholder-icon">📷</text>
+        <text class="cam-placeholder-text">点击快门拍摄美食</text>
+        <text class="cam-placeholder-sub">自动提取食物色卡</text>
+      </view>
+    </view>
+
+    <!-- 底部控制栏 -->
+    <view class="cam-footer">
+      <view class="cam-gallery-btn" bindtap="onChooseFromAlbum">
+        <text>🖼️ 相册</text>
+      </view>
+      <view class="cam-shutter" bindtap="onTakePhoto">
+        <view class="cam-shutter-inner"></view>
+      </view>
+      <view class="cam-close-btn" bindtap="onClose">
+        <text>✕ 退出</text>
+      </view>
+    </view>
+  </block>
+
+  <!-- ========== 结果编辑模式 ========== -->
+  <block wx:if="{{showResult}}">
+    <!-- 顶部简洁标题 -->
+    <view class="edit-header">
+      <text class="edit-header-title">📝 记录这一刻</text>
+    </view>
+
+    <scroll-view scroll-y enhanced show-scrollbar="{{false}}" class="edit-scroll" style="height: {{scrollHeight}}px;">
+      <!-- 照片预览 -->
+      <image src="{{capturedImage}}" mode="widthFix" class="edit-image" />
+
+      <!-- 色卡展示 -->
+      <view class="edit-section">
+        <view class="edit-section-title">🎨 提取的色卡</view>
+        <view class="pal-colors">
+          <block wx:for="{{extractedColors}}" wx:key="*this">
+            <view class="pal-color-item">
+              <view class="pal-color-dot" style="background: {{item}};"></view>
+              <text class="pal-color-code">{{item}}</text>
+            </view>
+          </block>
+        </view>
+      </view>
+
+      <!-- 食物信息 -->
+      <view class="edit-section">
+        <view class="edit-section-title">🍽️ 美食信息</view>
+        <input class="food-input" placeholder="食物名称（如：妈妈做的红烧肉）" value="{{foodName}}" bindinput="onFoodNameInput" maxlength="30" />
+        <textarea class="food-textarea" placeholder="描述一下这道美食的味道..." value="{{foodDesc}}" bindinput="onFoodDescInput" maxlength="200" auto-height />
+      </view>
+
+      <!-- 今日心情 -->
+      <view class="edit-section">
+        <view class="edit-section-title">💭 今日心情</view>
+        <!-- 心情表情选择 -->
+        <view class="mood-row">
+          <block wx:for="{{moodList}}" wx:key="emoji">
+            <view class="mood-item {{selectedMood === item.value ? 'active' : ''}}" bindtap="onSelectMood" data-mood="{{item.value}}">
+              <text class="mood-emoji">{{item.emoji}}</text>
+              <text class="mood-label">{{item.label}}</text>
+            </view>
+          </block>
+        </view>
+        <!-- 感受文字 -->
+        <textarea class="food-textarea feeling-textarea" placeholder="今天发生了什么？记录一下此刻的心情..." value="{{feeling}}" bindinput="onFeelingInput" maxlength="300" auto-height />
+      </view>
+
+      <view style="height: 120px;"></view>
+    </scroll-view>
+
+    <!-- 底部固定按钮 -->
+    <view class="edit-bottom-bar">
+      <view class="edit-btn back" bindtap="onRetake">
+        <text>← 重拍</text>
+      </view>
+      <view class="edit-btn save {{saving ? 'disabled' : ''}}" bindtap="onSave">
+        <text>{{saving ? '保存中...' : '💾 保存记录'}}</text>
+      </view>
+    </view>
+  </block>
+
+  <!-- ========== 味觉盲盒弹窗 ========== -->
+  <view class="blindbox-overlay" wx:if="{{showBlindBox}}">
+    <view class="blindbox-card">
+      <view class="blindbox-emoji">{{blindBox.emoji}}</view>
+      <view class="blindbox-tag">{{blindBox.tag}}</view>
+      <view class="blindbox-desc">{{blindBox.desc}}</view>
+      <view class="blindbox-confirm" bindtap="onCloseBlindBox">知道了</view>
+    </view>
+  </view>
+
+  <!-- Toast -->
+  <view class="toast {{toastShow ? 'show' : ''}}">{{toastText}}</view>
+
+  <!-- 隐藏 canvas 用于颜色提取 -->
+  <canvas type="2d" id="colorExtractCanvas" style="position: fixed; left: -9999px; top: -9999px; width: {{_extractW || 1}}px; height: {{_extractH || 1}}px;"></canvas>
+</view>

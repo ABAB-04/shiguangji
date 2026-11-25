@@ -1,0 +1,6 @@
+<!-- 色卡展示组件 -->
+<view class="palette">
+  <block wx:for="{{colors}}" wx:key="*this">
+    <view class="color-dot" style="background: {{item}};"></view>
+  </block>
+</view>

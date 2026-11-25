@@ -1,0 +1,45 @@
+<!-- 自定义顶部导航栏组件 -->
+<view class="top-nav" style="padding-top: {{statusBarHeight + 12}}px;">
+  <view class="top-nav-left">
+    <block wx:if="{{showBack}}">
+      <view class="back-btn" bindtap="onBack">
+        <text class="back-arrow">‹</text>
+        <text class="back-text">返回</text>
+      </view>
+    </block>
+    <block wx:else>
+      <view class="nav-deco-left">
+        <text class="nav-deco-dot">●</text>
+        <text class="nav-deco-line"></text>
+      </view>
+    </block>
+  </view>
+
+  <view class="top-nav-center">
+    <text class="nav-icon">{{navIcon}}</text>
+    <text class="top-nav-title">{{title}}</text>
+    <view class="nav-ornament">
+      <text class="ornament-dot left-dot">·</text>
+      <text class="ornament-diamond">◆</text>
+      <text class="ornament-dot right-dot">·</text>
+    </view>
+  </view>
+
+  <view class="top-nav-right">
+    <block wx:if="{{showMenu}}">
+      <view class="menu-btn" bindtap="onMenu">
+        <view class="menu-btn-line"></view>
+        <view class="menu-btn-line short"></view>
+        <view class="menu-btn-line"></view>
+      </view>
+    </block>
+    <block wx:else>
+      <view class="nav-deco-right">
+        <text class="nav-deco-line"></text>
+        <text class="nav-deco-dot">●</text>
+      </view>
+    </block>
+  </view>
+</view>
+<!-- 占位元素 -->
+<view style="height: {{statusBarHeight + 44}}px;"></view>

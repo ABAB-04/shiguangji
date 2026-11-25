@@ -1,0 +1,397 @@
+/* 食光机 - 个人中心样式 */
+@import '/app.wxss';
+
+/* ===== 头像区 ===== */
+.user-header {
+  text-align: center;
+  padding: 32px 20px 28px;
+  background: linear-gradient(180deg, rgba(212, 165, 116, 0.12) 0%, transparent 100%);
+}
+.user-avatar {
+  width: 90px;
+  height: 90px;
+  background: linear-gradient(135deg, rgba(212,165,116,0.3), rgba(139,115,85,0.3));
+  border-radius: 50%;
+  margin: 0 auto 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border: 2px solid rgba(212, 165, 116, 0.3);
+  overflow: hidden;
+}
+.avatar-img {
+  width: 100%;
+  height: 100%;
+}
+.avatar-emoji { font-size: 44px; }
+.avatar-badge {
+  position: absolute;
+  right: -2px;
+  bottom: -2px;
+  width: 28px;
+  height: 28px;
+  background: rgba(212, 165, 116, 0.6);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: #1a1a1a;
+  border: 2px solid #1a1a1a;
+  opacity: 0.45;
+  transition: opacity 0.2s;
+}
+.user-avatar:active .avatar-badge {
+  opacity: 1;
+}
+
+.user-name {
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.name-edit-icon {
+  font-size: 14px;
+  color: #888;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+}
+.user-name:active .name-edit-icon { opacity: 1; }
+
+.user-slogan {
+  font-size: 13px;
+  color: #777;
+  margin-top: 6px;
+}
+
+/* ===== 统计卡片 ===== */
+.stats-row {
+  display: flex;
+  gap: 10px;
+  padding: 16px 20px;
+}
+.stat-card {
+  flex: 1;
+  text-align: center;
+  padding: 16px 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+.stat-num {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 4px;
+}
+.stat-label {
+  font-size: 12px;
+  color: #888;
+}
+
+/* ===== 通用段落标签 ===== */
+.section-label {
+  padding: 0 20px;
+  margin: 8px 0 12px;
+  color: var(--accent);
+  font-size: 14px;
+  letter-spacing: 1.5px;
+  font-weight: 500;
+}
+
+/* ===== 心情条 ===== */
+.week-mood {
+  margin-bottom: 8px;
+}
+.mood-bar-row {
+  display: flex;
+  gap: 6px;
+  padding: 0 20px;
+}
+.mood-bar-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 10px;
+}
+.mood-bar-emoji { font-size: 22px; }
+.mood-bar-date { font-size: 10px; color: #666; }
+
+/* ===== 最近记录 ===== */
+.recent-section { margin-bottom: 8px; }
+.recent-scroll {
+  white-space: nowrap;
+  padding: 0 20px;
+}
+.recent-card {
+  display: inline-block;
+  width: 110px;
+  margin-right: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+.recent-img {
+  width: 100%;
+  height: 80px;
+}
+.recent-placeholder {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.recent-placeholder-icon { font-size: 28px; opacity: 0.6; }
+.recent-name {
+  padding: 6px 8px 2px;
+  font-size: 12px;
+  color: #ddd;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.recent-date {
+  padding: 0 8px 6px;
+  font-size: 10px;
+  color: #666;
+}
+
+/* ===== 成就徽章 ===== */
+.badge-section { margin-bottom: 8px; }
+.badge-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 0 20px;
+}
+.badge-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 12px 14px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  min-width: 70px;
+  opacity: 0.35;
+  filter: grayscale(1);
+}
+.badge-item.earned {
+  opacity: 1;
+  filter: none;
+  border-color: rgba(212, 165, 116, 0.2);
+  background: rgba(212, 165, 116, 0.06);
+}
+.badge-icon { font-size: 26px; }
+.badge-name { font-size: 10px; color: #888; }
+.badge-item.earned .badge-name { color: var(--accent); }
+
+/* ===== 关于 ===== */
+.about-section {
+  padding: 20px;
+  margin: 0 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 16px;
+}
+.about-content {
+  color: #999;
+  font-size: 14px;
+  line-height: 1.9;
+  margin-bottom: 14px;
+}
+.feature-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.feature-tag {
+  padding: 6px 12px;
+  background: rgba(212, 165, 116, 0.12);
+  border-radius: 14px;
+  font-size: 12px;
+  color: var(--accent);
+}
+
+/* ===== 关于开发者入口 ===== */
+.dev-entry {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 20px;
+  margin: 12px 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+.dev-entry:active {
+  background: rgba(212, 165, 116, 0.08);
+}
+.dev-entry-icon {
+  font-size: 22px;
+}
+.dev-entry-text {
+  flex: 1;
+  font-size: 15px;
+  color: #eee;
+}
+.dev-entry-arrow {
+  font-size: 22px;
+  color: #666;
+}
+
+/* ===== 开发者弹窗 ===== */
+.dev-modal-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1000;
+}
+.dev-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600rpx;
+  background: #2a2a2a;
+  border-radius: 24rpx;
+  z-index: 1001;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.dev-modal-header {
+  text-align: center;
+  padding: 36rpx 20rpx 20rpx;
+}
+.dev-modal-icon {
+  font-size: 48rpx;
+  display: block;
+  margin-bottom: 10rpx;
+}
+.dev-modal-title {
+  font-size: 34rpx;
+  font-weight: 600;
+  color: #fff;
+}
+.dev-modal-body {
+  padding: 0 30rpx 20rpx;
+}
+.dev-info-row {
+  display: flex;
+  align-items: center;
+  padding: 16rpx 0;
+}
+.dev-info-label {
+  width: 140rpx;
+  font-size: 26rpx;
+  color: #888;
+  flex-shrink: 0;
+}
+.dev-info-value {
+  font-size: 26rpx;
+  color: #eee;
+}
+.dev-email {
+  color: var(--accent);
+}
+.dev-info-divider {
+  height: 1rpx;
+  background: rgba(255, 255, 255, 0.06);
+  margin: 20rpx 0;
+}
+.dev-info-desc {
+  font-size: 24rpx;
+  color: #999;
+  line-height: 1.8;
+}
+.dev-modal-footer {
+  padding: 0 30rpx 30rpx;
+}
+.dev-modal-btn {
+  text-align: center;
+  padding: 18rpx 0;
+  background: rgba(212, 165, 116, 0.12);
+  border-radius: 16rpx;
+  color: var(--accent);
+  font-size: 28rpx;
+  font-weight: 500;
+}
+.dev-modal-btn:active {
+  background: rgba(212, 165, 116, 0.25);
+}
+
+/* ===== 头像选择器 ===== */
+.avatar-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16rpx;
+  padding: 0 20rpx 24rpx;
+}
+.avatar-option {
+  width: 90rpx;
+  height: 90rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.04);
+  border: 2rpx solid transparent;
+  transition: all 0.2s;
+}
+.avatar-option.selected {
+  background: rgba(212, 165, 116, 0.15);
+  border-color: var(--accent);
+}
+.avatar-option:active {
+  background: rgba(212, 165, 116, 0.1);
+}
+.avatar-option-emoji {
+  font-size: 40rpx;
+}
+
+.avatar-upload {
+  flex-direction: column;
+  gap: 2rpx;
+  border-style: dashed;
+  border-color: rgba(255, 255, 255, 0.15);
+}
+.avatar-upload.selected {
+  border-style: solid;
+  border-color: var(--accent);
+  background: rgba(212, 165, 116, 0.15);
+}
+.avatar-upload-icon {
+  font-size: 28rpx;
+}
+.avatar-upload-label {
+  font-size: 18rpx;
+  color: #888;
+}
+
+/* ===== 昵称输入 ===== */
+.name-input {
+  width: 100%;
+  padding: 20rpx;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 12rpx;
+  color: #eee;
+  font-size: 28rpx;
+  text-align: center;
+}
+.name-input-placeholder {
+  color: #666;
+}

@@ -1,0 +1,134 @@
+@import '/app.wxss';
+
+.greeting-section {
+  padding: 30rpx 40rpx;
+}
+.greeting {
+  font-size: 48rpx;
+  font-weight: bold;
+  color: var(--text);
+}
+.greeting-sub {
+  display: block;
+  margin-top: 10rpx;
+  font-size: 28rpx;
+  color: var(--textLight);
+}
+
+.view-toggle {
+  display: flex;
+  margin: 0 40rpx 20rpx;
+  background: var(--cardBg);
+  border-radius: 16rpx;
+  overflow: hidden;
+}
+.toggle-item {
+  flex: 1;
+  text-align: center;
+  padding: 16rpx;
+  font-size: 28rpx;
+  color: var(--textDark);
+}
+.toggle-item.active {
+  background: var(--primary);
+  color: #fff;
+}
+
+.calendar-container {
+  margin: 0 40rpx;
+}
+.calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20rpx 0;
+}
+.cal-nav {
+  font-size: 32rpx;
+  color: var(--primary);
+  padding: 10rpx 20rpx;
+}
+.cal-title {
+  font-size: 30rpx;
+  color: var(--text);
+  font-weight: bold;
+}
+
+.week-row {
+  display: flex;
+}
+.week-day {
+  flex: 1;
+  text-align: center;
+  font-size: 24rpx;
+  color: var(--textLight);
+  padding: 10rpx 0;
+}
+
+.day-grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+.day-cell {
+  width: calc(100% / 7);
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  position: relative;
+}
+.day-cell.prev,
+.day-cell.next {
+  opacity: 0.3;
+}
+.day-cell.has-food {
+  color: var(--primary);
+  font-weight: bold;
+}
+.day-num {
+  font-size: 26rpx;
+  color: var(--textDark);
+}
+.day-dot {
+  width: 8rpx;
+  height: 8rpx;
+  border-radius: 50%;
+  background: var(--primary);
+  margin-top: 6rpx;
+}
+
+.selected-food {
+  margin-top: 30rpx;
+}
+.no-food {
+  text-align: center;
+  padding: 60rpx 0;
+  font-size: 26rpx;
+  color: var(--textLight);
+}
+
+.banner-swiper {
+  margin: 0 40rpx 20rpx;
+  height: 300rpx;
+  border-radius: 16rpx;
+  overflow: hidden;
+}
+.banner-img {
+  width: 100%;
+  height: 100%;
+}
+
+.waterfall {
+  display: flex;
+  padding: 0 40rpx;
+  gap: 20rpx;
+}
+.col-left,
+.col-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}

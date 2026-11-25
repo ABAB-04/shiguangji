@@ -1,0 +1,84 @@
+<!-- 食光机 - 烹饪计时器页 -->
+<view class="page-container">
+  <top-nav title="烹饪计时器" />
+
+  <view class="timer-body">
+    <!-- 圆形进度区（带呼吸光晕） -->
+    <view class="timer-ring-area {{isRunning ? 'breathing' : ''}} {{isFinished ? 'finished' : ''}}">
+      <canvas type="2d" id="timerRing" class="timer-ring-canvas"></canvas>
+      <view class="timer-display">
+        <text class="timer-minutes">{{displayMin}}</text>
+        <text class="timer-colon">:</text>
+        <text class="timer-seconds">{{displaySec}}</text>
+      </view>
+      <view class="timer-label">{{isRunning ? cookingLabel : timerLabel}}</view>
+    </view>
+
+    <!-- 预设分组 -->
+    <view class="preset-group">
+      <view class="preset-group-title">🍜 速食</view>
+      <view class="timer-presets">
+        <view class="preset-btn {{presetIndex === 0 ? 'active' : ''}}" bindtap="onPreset" data-seconds="60" data-label="泡面" data-idx="0" data-emoji="🍜">
+          <text class="preset-emoji">🍜</text><text>1分钟</text>
+        </view>
+        <view class="preset-btn {{presetIndex === 1 ? 'active' : ''}}" bindtap="onPreset" data-seconds="180" data-label="泡面" data-idx="1" data-emoji="🍝">
+          <text class="preset-emoji">🍝</text><text>3分钟</text>
+        </view>
+        <view class="preset-btn {{presetIndex === 2 ? 'active' : ''}}" bindtap="onPreset" data-seconds="300" data-label="煎蛋" data-idx="2" data-emoji="🍳">
+          <text class="preset-emoji">🍳</text><text>5分钟</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="preset-group">
+      <view class="preset-group-title">🍳 快手菜</view>
+      <view class="timer-presets">
+        <view class="preset-btn {{presetIndex === 3 ? 'active' : ''}}" bindtap="onPreset" data-seconds="600" data-label="蒸鱼" data-idx="3" data-emoji="🐟">
+          <text class="preset-emoji">🐟</text><text>10分钟</text>
+        </view>
+        <view class="preset-btn {{presetIndex === 4 ? 'active' : ''}}" bindtap="onPreset" data-seconds="900" data-label="煲汤" data-idx="4" data-emoji="🍲">
+          <text class="preset-emoji">🍲</text><text>15分钟</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="preset-group">
+      <view class="preset-group-title">🥩 慢炖</view>
+      <view class="timer-presets">
+        <view class="preset-btn {{presetIndex === 5 ? 'active' : ''}}" bindtap="onPreset" data-seconds="1800" data-label="炖肉" data-idx="5" data-emoji="🥩">
+          <text class="preset-emoji">🥩</text><text>30分钟</text>
+        </view>
+        <view class="preset-btn {{presetIndex === 6 ? 'active' : ''}}" bindtap="onPreset" data-seconds="3600" data-label="慢炖" data-idx="6" data-emoji="🫕">
+          <text class="preset-emoji">🫕</text><text>60分钟</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 自定义 -->
+    <view class="custom-row" bindtap="onPreset" data-seconds="0" data-label="自定义" data-idx="7" data-emoji="⏱️">
+      <text>⏱️ 自定义时间</text>
+      <text class="custom-val">{{customMinutes}} 分钟</text>
+    </view>
+    <view class="custom-slider" wx:if="{{presetIndex === 7}}">
+      <slider min="1" max="120" value="{{customMinutes}}" bindchange="onCustomChange" block-size="18" activeColor="#d4a574" backgroundColor="rgba(255,255,255,0.1)" />
+    </view>
+
+    <!-- 控制按钮 -->
+    <view class="timer-controls">
+      <view class="ctrl-btn reset-btn {{isRunning || isPaused ? '' : 'hidden'}}" bindtap="onReset">
+        <text>↺</text>
+      </view>
+      <view class="ctrl-btn main-btn {{isRunning ? 'pause' : 'start'}}" bindtap="onToggleTimer">
+        <text>{{isRunning ? '⏸' : '▶'}}</text>
+      </view>
+      <view class="ctrl-btn reset-btn" style="opacity: 0;">
+        <text>↺</text>
+      </view>
+    </view>
+
+    <!-- 状态 -->
+    <view class="timer-status">{{statusText}}</view>
+  </view>
+
+  <view style="height: 30px;"></view>
+</view>

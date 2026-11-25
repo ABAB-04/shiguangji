@@ -1,0 +1,29 @@
+<!-- 胶片风格卡片组件 -->
+<view class="film-item" data-id="{{food._id || food.id}}" bindtap="onTap">
+  <!-- 图片容器：带占位背景 -->
+  <view class="film-image-wrapper" style="background: linear-gradient(135deg, {{food.colors[0] || '#d4a574'}}, {{food.colors[2] || '#8b7355'}});">
+    <!-- 占位图标（图片加载前显示，仅当有图片URL时） -->
+    <view wx:if="{{!imageLoaded && displayImage}}" class="film-loading-placeholder">
+      <text class="film-loading-icon">🍽️</text>
+    </view>
+    <!-- 实际图片（使用缩略图或原图） -->
+    <image wx:if="{{displayImage}}"
+           src="{{displayImage}}"
+           mode="widthFix"
+           lazy-load="{{true}}"
+           class="film-image {{imageLoaded ? 'loaded' : ''}}"
+           bindload="onImageLoad"
+           binderror="onImageError" />
+    <!-- 无图片时的占位 -->
+    <view wx:if="{{!displayImage}}" class="film-placeholder">
+      <text class="film-placeholder-icon">🍽️</text>
+    </view>
+  </view>
+  <view class="film-caption">{{food.title}}</view>
+  <view class="film-date">{{food.date}}</view>
+  <view class="film-tags">
+    <block wx:for="{{food.tags}}" wx:for-item="tag" wx:key="*this">
+      <text class="film-tag">{{tag}}</text>
+    </block>
+  </view>
+</view>
