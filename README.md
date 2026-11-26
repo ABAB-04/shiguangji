@@ -9,6 +9,17 @@
 - 保存时走「文本检测 → 图片检测」双内容安全校验
 - 分享卡片生成、骨架屏、分页加载
 
+## 界面预览
+
+<p align="center">
+  <img src="docs/screenshots/page1.png" width="210" alt="首页">
+  <img src="docs/screenshots/page2.png" width="210" alt="美食图鉴">
+  <img src="docs/screenshots/page3.png" width="210" alt="烹饪影像">
+  <img src="docs/screenshots/page4.png" width="210" alt="白噪音">
+</p>
+
+<p align="center"><sub>首页 · 美食图鉴 · 烹饪影像 · 白噪音</sub></p>
+
 ## 技术栈
 
 - 微信小程序原生框架（WXML / WXSS / JS）
