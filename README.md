@@ -56,7 +56,13 @@ miniprogram/
 ## 说明
 
 - 仓库内不含任何密钥或用户数据，云环境 ID 请自行替换。
-- 小程序已上线，欢迎扫码体验（见 docs/screenshots）。
+## 在线体验
+
+<p align=left>
+  <img src=docs/screenshots/qrcode.jpg width=150 alt=小程序码>
+</p>
+
+微信扫码即可打开小程序（个人主体，无需下载）。
 
 ## 许可证
 
